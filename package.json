@@ -1,0 +1,14 @@
+{
+  "name": "vulnerable-project",
+  "version": "1.0.0",
+  "description": "A project with a vulnerable dependency",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "lodash": "4.17.10"
+  },
+  "author": "Your Name",
+  "license": "ISC"
+}
