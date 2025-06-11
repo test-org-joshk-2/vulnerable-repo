@@ -1,0 +1,36 @@
+name: Mock Deployment
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Create Deployment
+      id: create_deployment
+      uses: peter-evans/create-or-update-deployment@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        environment: production
+        description: 'Starting mock deployment'
+
+    - name: Simulate Deployment
+      run: |
+        echo "Simulating deployment..."
+        sleep 10
+
+    - name: Update Deployment Status
+      id: update_deployment_status
+      uses: peter-evans/create-or-update-deployment-status@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        environment: production
+        state: success
+        deployment_id: ${{ steps.create_deployment.outputs.deployment_id }}
+        description: 'Mock deployment completed successfully'
