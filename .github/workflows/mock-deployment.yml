@@ -1,4 +1,4 @@
-name: Mock Deployment
+name: Mock Deployment cat-28
 
 on:
   workflow_dispatch:
